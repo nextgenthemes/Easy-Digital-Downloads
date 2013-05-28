@@ -380,6 +380,12 @@ function edd_register_settings() {
 					'desc' => __('Display the registration and login forms on the checkout page for non-logged-in users.', 'edd'),
 					'type' => 'checkbox',
 				),
+				'auto_create_accounts' => array(
+					'id' => 'auto_create_accounts',
+					'name' => __('Auto Create Accounts', 'edd'),
+					'desc' => __('Automatically create user accounts for customers when they purchase based on their email address.', 'edd'),
+					'type' => 'checkbox',
+				),
 				'field_downloads' => array(
 					'id' => 'field_downloads',
 					'name' => '<strong>' . __('File Downloads', 'edd') . '</strong>',
