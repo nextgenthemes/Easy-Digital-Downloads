@@ -91,7 +91,8 @@ add_action( 'edd_reports_tab_reports', 'edd_reports_tab_reports' );
  */
 function edd_report_views() {
 	$views        = edd_reports_default_views();
-	$current_view = isset( $_GET[ 'view' ] ) ? $_GET[ 'view' ] : 'earnings';
+	$current_view = isset( $_GET[ 'view' ] )   ? $_GET[ 'view' ]   : 'earnings';
+	$category     = isset( $_GET['category'] ) ? $_GET['category'] : null;
 	?>
 	<form id="edd-reports-filter" method="get">
 		<select id="edd-reports-view" name="view">
@@ -100,8 +101,12 @@ function edd_report_views() {
 				<option value="<?php echo esc_attr( $view_id ); ?>" <?php selected( $view_id, $current_view ); ?>><?php echo $label; ?></option>
 			<?php endforeach; ?>
 		</select>
-
-		<?php do_action( 'edd_report_view_actions' ); ?>
+		<?php
+		if( 'downloads' == $current_view || 'earnings' == $current_view ) {
+			echo EDD()->html->category_dropdown( 'category', $category );
+		}
+		do_action( 'edd_report_view_actions' );
+		?>
 
 		<input type="hidden" name="post_type" value="download"/>
 		<input type="hidden" name="page" value="edd-reports"/>

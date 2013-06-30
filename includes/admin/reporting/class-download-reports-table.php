@@ -56,8 +56,6 @@ class EDD_Download_Reports_Table extends WP_List_Table {
 			'ajax'      => false             			// Does this table support ajax?
 		) );
 
-		add_action( 'edd_report_view_actions', array( $this, 'category_filter' ) );
-
 		$this->query();
 
 	}
@@ -165,19 +163,6 @@ class EDD_Download_Reports_Table extends WP_List_Table {
 	public function bulk_actions() {
 		// These aren't really bulk actions but this outputs the markup in the right place
 		edd_report_views();
-	}
-
-
-	/**
-	 * Attaches the category filter to the log views
-	 *
-	 * @access public
-	 * @since 1.5.2
-	 * @return void
-	 */
-	public function category_filter() {
-		$current_view = isset( $_GET[ 'view' ] ) ? $_GET[ 'view' ] : 'earnings';
-		echo EDD()->html->category_dropdown( 'category', $this->get_category() );
 	}
 
 
